@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=3 format=3 uid="uid://dmuel6vygroqp"]
+
+[ext_resource type="Script" path="res://Scenes/Player/Weapons/weapon_resource.gd" id="1_j844o"]
+[ext_resource type="PackedScene" uid="uid://baipad6dpo2bl" path="res://Scenes/Player/Projectiles/bullet_projectile.tscn" id="1_y6gnp"]
+
+[resource]
+script = ExtResource("1_j844o")
+weapon_name = "BlasterA2"
+activate_anim = "BlasterA2Activate"
+deactivate_anim = "BlasterA2Deactivate"
+reload_anim = "BlasterA2Reload"
+shoot_anim = "BlasterA2Shoot"
+current_ammo = 10
+reserve_ammo = 100
+magazine = 10
+auto_fire = true
+max_ammo = 200
+type = 2
+weapon_range = 2000
+damage = 2
+projectile_to_load = ExtResource("1_y6gnp")
+projectile_velocity = 30

@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2fmu7b42j8jh"]
+
+[ext_resource type="Script" path="res://Assets/Enemies/enemy_projectile.gd" id="1_b748u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vlvmg"]
+albedo_color = Color(0.805538, 0.520851, 1.92523e-07, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 10.0
+rim_enabled = true
+disable_receive_shadows = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_tsl6j"]
+material = SubResource("StandardMaterial3D_vlvmg")
+radius = 0.25
+height = 0.5
+radial_segments = 32
+rings = 16
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iwbs2"]
+radius = 0.25
+
+[node name="enemy_projectile" type="RigidBody3D"]
+collision_layer = 128
+collision_mask = 23
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_b748u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_tsl6j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_iwbs2")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

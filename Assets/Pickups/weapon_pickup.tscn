@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwici5hk6kchb"]
+
+[ext_resource type="Script" path="res://Assets/Pickups/weapon_pickup.gd" id="1_t4u5m"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yad84"]
+
+[node name="weapon_pickup" type="RigidBody3D" groups=["PickupGroup"]]
+collision_layer = 32
+script = ExtResource("1_t4u5m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_yad84")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]

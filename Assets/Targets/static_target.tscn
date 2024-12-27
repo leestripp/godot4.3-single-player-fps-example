@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnk81mwalsfcf"]
+
+[ext_resource type="Script" path="res://Assets/Targets/static_target.gd" id="1_bis81"]
+[ext_resource type="PackedScene" uid="uid://c5x608afgcoo2" path="res://Assets/Weapons/targetA.glb" id="1_xrfmn"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bxedb"]
+height = 0.1
+radius = 0.175
+
+[node name="static_target" type="StaticBody3D" groups=["Targets"]]
+collision_layer = 4
+collision_mask = 23
+script = ExtResource("1_bis81")
+
+[node name="targetA2" parent="." instance=ExtResource("1_xrfmn")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CylinderShape3D_bxedb")

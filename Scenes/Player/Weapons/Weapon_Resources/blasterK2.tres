@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=2 format=3 uid="uid://bn1tl0so0l5ik"]
+
+[ext_resource type="Script" path="res://Scenes/Player/Weapons/weapon_resource.gd" id="1_6riag"]
+
+[resource]
+script = ExtResource("1_6riag")
+weapon_name = "BlasterK2"
+activate_anim = "BlasterK2Activate"
+deactivate_anim = "BlasterK2Deactivate"
+reload_anim = "BlasterK2Reload"
+shoot_anim = "BlasterK2Shoot"
+current_ammo = 6
+reserve_ammo = 24
+magazine = 6
+auto_fire = true
+max_ammo = 100
+type = 1
+weapon_range = 1000
+damage = 1
+projectile_velocity = 10

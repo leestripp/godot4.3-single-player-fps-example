@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4n2w6d4u01i7"]
+
+[ext_resource type="Script" path="res://Assets/Targets/target_physics.gd" id="1_fcq1h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xssbp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_e2na6"]
+
+[node name="cubeTarget" type="RigidBody3D" groups=["Targets"]]
+collision_layer = 4
+collision_mask = 23
+script = ExtResource("1_fcq1h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_xssbp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_e2na6")
