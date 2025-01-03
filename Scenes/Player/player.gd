@@ -31,7 +31,7 @@ var canMove := true
 # movement
 var inputDirection := Vector3.ZERO
 
-@onready var bullet_point: Marker3D = $Camera3D/FPS_Rig/bullet_point
+@onready var bullet_point: Marker3D = $Camera3D/Weapons_Manager/bullet_point
 
 
 func _input(event: InputEvent) -> void:

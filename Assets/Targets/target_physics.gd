@@ -1,11 +1,11 @@
 extends RigidBody3D
 
-# bullet type
+# bullet types
 enum {NULL, HITSCAN, PROJECTILE}
 
 var health = 10
 # physics
-var hit_factor = 5
+var hit_factor = 2
 
 func hit_sucessful(bullet_type, damage, _direction:= Vector3.ZERO, _position:= Vector3.ZERO):
 	match bullet_type:

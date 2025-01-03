@@ -4,17 +4,18 @@ extends RigidBody3D
 var type := "Weapon"
 
 @export_enum("BlasterA2", "BlasterK2") var weap_name := "BlasterK2"
-@onready var mesh_instance_3d: MeshInstance3D = $Node3D/MeshInstance3D
+@onready var node_3d: Node3D = $Node3D
 var pickup_ready := false
 
-const BLASTER_K = preload("res://Assets/Weapons/blasterK.mesh")
-const BLASTER_A = preload("res://Assets/Weapons/blasterA.mesh")
+const BLASTER_K = preload("res://Assets/Weapons/blaster_k.tscn")
+const BLASTER_A = preload("res://Assets/Weapons/blaster_a.tscn")
 
 func _ready() -> void:
+	var mesh : Node3D
 	match weap_name:
 		"BlasterA2":
-			mesh_instance_3d.set_mesh(BLASTER_A)
+			mesh = BLASTER_A.instantiate()
 		"BlasterK2":
-			mesh_instance_3d.set_mesh(BLASTER_K)
-	await get_tree().create_timer(1).timeout
+			mesh = BLASTER_K.instantiate()
+	node_3d.add_child(mesh)
 	pickup_ready = true

@@ -1,0 +1,169 @@
+[gd_scene load_steps=21 format=3 uid="uid://efgu4m5fugjn"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/test_level/test_level.gd" id="1_3xpkj"]
+[ext_resource type="PackedScene" uid="uid://4gkfyndklksj" path="res://Scenes/Player/Player.tscn" id="3_yoxeb"]
+[ext_resource type="PackedScene" uid="uid://cnk81mwalsfcf" path="res://Assets/Targets/static_target.tscn" id="4_h8fku"]
+[ext_resource type="PackedScene" uid="uid://b4n2w6d4u01i7" path="res://Assets/Targets/targetA.tscn" id="5_7sc7x"]
+[ext_resource type="PackedScene" uid="uid://703wqpu3y16y" path="res://Assets/Enemies/zombie.tscn" id="6_lp7q1"]
+[ext_resource type="PackedScene" uid="uid://bwici5hk6kchb" path="res://Assets/Pickups/weapon_pickup.tscn" id="7_sw32u"]
+[ext_resource type="PackedScene" uid="uid://c2oaq3u8wxq1i" path="res://Assets/Pickups/ammo_pickup.tscn" id="8_koncl"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_urp48"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_85q8e"]
+sky_material = SubResource("ProceduralSkyMaterial_urp48")
+
+[sub_resource type="Environment" id="Environment_r3sxf"]
+background_mode = 2
+sky = SubResource("Sky_85q8e")
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+glow_enabled = true
+
+[sub_resource type="GDScript" id="GDScript_6tpwd"]
+script/source = "extends DirectionalLight3D
+
+
+func _ready() -> void:
+	pass
+
+
+func _process(delta: float) -> void:
+	# rotation.x += 0.2 * delta
+	pass
+"
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_vqnak"]
+vertices = PackedVector3Array(-0.25, 0.5, -1, 0, 0.5, 0.25, 0.75, 0.5, 0.25, 0.75, 0.5, -5.25, -2, 0.5, -1, 2.75, 0.5, -11.5, -12, 0.5, -12, -11.5, 0.5, 0.25, 2.75, 0.5, -5.5, -2.25, 0.5, 0.25, 4.75, 0.5, -5.5, 4.75, 0.5, -11.5, 5, 0.5, -12, 5, 0.5, -3.25, 12, 0.5, -3.25, 12, 0.5, -12, 1.75, 2, -4.5, 1.75, 2, 4.75, 4, 2, 4.75, 4, 2, -4.5, 5, 0.5, 3.5, 12, 0.5, 3.5, -0.25, 0.5, 1.25, 0.75, 0.5, 5.5, 2.25, 0.5, 12, -2, 0.5, 1.25, -12, 0.5, 12, 2.5, 0.5, 5.75, 4.75, 0.5, 5.75, 12, 0.5, 12)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 4, 5), PackedInt32Array(5, 4, 7), PackedInt32Array(5, 7, 6), PackedInt32Array(3, 0, 4), PackedInt32Array(5, 8, 3), PackedInt32Array(4, 9, 7), PackedInt32Array(11, 10, 5), PackedInt32Array(5, 10, 8), PackedInt32Array(11, 12, 10), PackedInt32Array(10, 12, 13), PackedInt32Array(13, 12, 15), PackedInt32Array(13, 15, 14), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17), PackedInt32Array(13, 14, 20), PackedInt32Array(20, 14, 21), PackedInt32Array(1, 2, 22), PackedInt32Array(22, 2, 23), PackedInt32Array(23, 24, 25), PackedInt32Array(25, 24, 7), PackedInt32Array(7, 24, 26), PackedInt32Array(25, 22, 23), PackedInt32Array(23, 27, 24), PackedInt32Array(7, 9, 25), PackedInt32Array(24, 27, 28), PackedInt32Array(28, 20, 21), PackedInt32Array(21, 29, 28), PackedInt32Array(28, 29, 24)]
+geometry_source_geometry_mode = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nbxn6"]
+resource_name = "Ground"
+size = Vector3(25, 0.25, 25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_63v2e"]
+albedo_color = Color(0.365796, 0.378225, 0.0954164, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1opok"]
+material = SubResource("StandardMaterial3D_63v2e")
+size = Vector3(25, 0.25, 25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cmwxo"]
+albedo_color = Color(0.710754, 0, 0.0833487, 1)
+roughness = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_vn5gr"]
+material = SubResource("StandardMaterial3D_cmwxo")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xw8im"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yelrh"]
+size = Vector3(10, 3, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2f5cf"]
+size = Vector3(10, 3, 0.25)
+
+[node name="Test_Level" type="Node3D"]
+script = ExtResource("1_3xpkj")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r3sxf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.66262, -0.648615, 0.374478, 0, 0.5, 0.866025, -0.748955, -0.573846, 0.33131, 0, 3, 0)
+light_color = Color(1, 0.992157, 0.952941, 1)
+shadow_enabled = true
+script = SubResource("GDScript_6tpwd")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_vqnak")
+
+[node name="Player" parent="." instance=ExtResource("3_yoxeb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.14189, 1, 6.344)
+
+[node name="Objects" type="Node3D" parent="."]
+
+[node name="Static" type="Node3D" parent="Objects" groups=["navigation_mesh_source_group"]]
+
+[node name="Ground" type="StaticBody3D" parent="Objects/Static"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Static/Ground"]
+shape = SubResource("BoxShape3D_nbxn6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Static/Ground"]
+mesh = SubResource("BoxMesh_1opok")
+skeleton = NodePath("")
+
+[node name="CubeStatic" type="StaticBody3D" parent="Objects/Static"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.5, 0)
+collision_layer = 4
+collision_mask = 7
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Static/CubeStatic"]
+mesh = SubResource("BoxMesh_vn5gr")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Static/CubeStatic"]
+shape = SubResource("BoxShape3D_xw8im")
+
+[node name="Walls" type="Node3D" parent="Objects/Static"]
+
+[node name="Wall" type="StaticBody3D" parent="Objects/Static/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.604, 1.5, -12.302)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Static/Walls/Wall"]
+mesh = SubResource("BoxMesh_yelrh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Static/Walls/Wall"]
+shape = SubResource("BoxShape3D_2f5cf")
+
+[node name="Wall2" type="StaticBody3D" parent="Objects/Static/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.245, 1.5, -0.314401)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Static/Walls/Wall2"]
+mesh = SubResource("BoxMesh_yelrh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Static/Walls/Wall2"]
+shape = SubResource("BoxShape3D_2f5cf")
+
+[node name="Wall3" type="StaticBody3D" parent="Objects/Static/Walls"]
+transform = Transform3D(1.91069e-15, 1, -4.37114e-08, 4.37114e-08, -4.37114e-08, -1, -1, 0, -4.37114e-08, 2.931, 1.5, 0.13)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Static/Walls/Wall3"]
+mesh = SubResource("BoxMesh_yelrh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Static/Walls/Wall3"]
+shape = SubResource("BoxShape3D_2f5cf")
+
+[node name="Dynamic" type="Node3D" parent="Objects"]
+
+[node name="static_target" parent="Objects/Dynamic" instance=ExtResource("4_h8fku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0821, 1.59096, 1.48953)
+
+[node name="CubeTarget" parent="Objects/Dynamic" instance=ExtResource("5_7sc7x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.06039, 2.31369, 2.28976)
+
+[node name="CubeTarget2" parent="Objects/Dynamic" instance=ExtResource("5_7sc7x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.97982, 1.80617, 0)
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Zombie" parent="Enemies" instance=ExtResource("6_lp7q1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23531, 1.02704, -2.28761)
+
+[node name="Zombie2" parent="Enemies" instance=ExtResource("6_lp7q1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.28155, 0, 8.40641)
+
+[node name="Pickups" type="Node3D" parent="."]
+
+[node name="weapon_pickup" parent="Pickups" instance=ExtResource("7_sw32u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.435, 0.5, 5.683)
+weap_name = "BlasterA2"
+
+[node name="ammo_pickup" parent="Pickups" instance=ExtResource("8_koncl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.52275, 0.5, 2.29827)

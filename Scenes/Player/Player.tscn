@@ -2,18 +2,18 @@
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_w1kt7"]
 [ext_resource type="Script" path="res://Scenes/Player/StateMachine/StateMachine.gd" id="2_5d50l"]
-[ext_resource type="PackedScene" uid="uid://4ci8kr6bylsb" path="res://Assets/Weapons/blasterA.glb" id="2_8lg48"]
-[ext_resource type="Script" path="res://Scenes/Player/weapons_manager.gd" id="2_xl7x2"]
-[ext_resource type="PackedScene" uid="uid://cnh2gobmhvjlu" path="res://Assets/Weapons/blasterK.glb" id="2_yyyo3"]
+[ext_resource type="Script" path="res://Scenes/Player/WeaponManager/weapons_manager.gd" id="2_xl7x2"]
 [ext_resource type="Script" path="res://Scenes/Player/StateMachine/States/idle.gd" id="3_l5be2"]
-[ext_resource type="Script" path="res://Scenes/Player/Weapons/weapon_resource.gd" id="3_r2w14"]
+[ext_resource type="Script" path="res://Scenes/Player/WeaponManager/weapon_resource.gd" id="3_r2w14"]
 [ext_resource type="Texture2D" uid="uid://bxv2jk40oouk3" path="res://Assets/Weapons/crosshair01.png" id="3_t4g3s"]
 [ext_resource type="Script" path="res://Scenes/Player/StateMachine/States/walk.gd" id="4_qp1rp"]
-[ext_resource type="Resource" uid="uid://bn1tl0so0l5ik" path="res://Scenes/Player/Weapons/Weapon_Resources/blasterK2.tres" id="4_wa8sq"]
-[ext_resource type="Resource" uid="uid://dmuel6vygroqp" path="res://Scenes/Player/Weapons/Weapon_Resources/blasterA2.tres" id="5_e3wdt"]
+[ext_resource type="Resource" uid="uid://bn1tl0so0l5ik" path="res://Scenes/Player/WeaponManager/Weapon_Resources/blasterK2.tres" id="4_wa8sq"]
+[ext_resource type="Resource" uid="uid://dmuel6vygroqp" path="res://Scenes/Player/WeaponManager/Weapon_Resources/blasterA2.tres" id="5_e3wdt"]
 [ext_resource type="Script" path="res://Scenes/Player/StateMachine/States/run.gd" id="5_qjml8"]
 [ext_resource type="Script" path="res://Scenes/Player/StateMachine/States/crouch.gd" id="6_i4uin"]
 [ext_resource type="Script" path="res://Scenes/Player/StateMachine/States/in_air.gd" id="7_pvb1s"]
+[ext_resource type="PackedScene" uid="uid://cujk30d8ltytj" path="res://Assets/Weapons/blaster_k.tscn" id="8_cim0l"]
+[ext_resource type="PackedScene" uid="uid://c3qutennd0atx" path="res://Assets/Weapons/blaster_a.tscn" id="9_qb25v"]
 [ext_resource type="Script" path="res://Scenes/Player/hud.gd" id="14_oh2iu"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7bsy7"]
@@ -26,7 +26,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("blasterA2:visible")
+tracks/0/path = NodePath("../Weapons_Manager/blasterA2:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -38,7 +38,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("blasterA2:position")
+tracks/1/path = NodePath("../Weapons_Manager/blasterA2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -50,7 +50,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("blasterA2:rotation")
+tracks/2/path = NodePath("../Weapons_Manager/blasterA2:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -62,7 +62,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("bullet_point:position")
+tracks/3/path = NodePath("../Weapons_Manager/bullet_point:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -78,7 +78,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("blasterA2:visible")
+tracks/0/path = NodePath("../Weapons_Manager/blasterA2:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -90,7 +90,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("blasterA2:position")
+tracks/1/path = NodePath("../Weapons_Manager/blasterA2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -102,7 +102,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("blasterA2:rotation")
+tracks/2/path = NodePath("../Weapons_Manager/blasterA2:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -118,7 +118,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("blasterA2:rotation")
+tracks/0/path = NodePath("../Weapons_Manager/blasterA2:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -134,7 +134,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("blasterA2:position")
+tracks/0/path = NodePath("../Weapons_Manager/blasterA2:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -146,7 +146,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("blasterA2:rotation")
+tracks/1/path = NodePath("../Weapons_Manager/blasterA2:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -162,7 +162,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("blasterK2:visible")
+tracks/0/path = NodePath("../Weapons_Manager/blasterK2:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -174,7 +174,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("blasterK2:position")
+tracks/1/path = NodePath("../Weapons_Manager/blasterK2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -186,7 +186,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("blasterK2:rotation")
+tracks/2/path = NodePath("../Weapons_Manager/blasterK2:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -198,7 +198,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("bullet_point:position")
+tracks/3/path = NodePath("../Weapons_Manager/bullet_point:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -214,7 +214,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("blasterK2:visible")
+tracks/0/path = NodePath("../Weapons_Manager/blasterK2:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -226,7 +226,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("blasterK2:position")
+tracks/1/path = NodePath("../Weapons_Manager/blasterK2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -238,7 +238,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("blasterK2:rotation")
+tracks/2/path = NodePath("../Weapons_Manager/blasterK2:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -254,7 +254,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("blasterK2:rotation")
+tracks/0/path = NodePath("../Weapons_Manager/blasterK2:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -270,7 +270,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("blasterK2:position")
+tracks/0/path = NodePath("../Weapons_Manager/blasterK2:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -282,7 +282,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("blasterK2:rotation")
+tracks/1/path = NodePath("../Weapons_Manager/blasterK2:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -297,7 +297,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("blasterK2:visible")
+tracks/0/path = NodePath("../Weapons_Manager/blasterK2:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -309,7 +309,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("blasterK2:position")
+tracks/1/path = NodePath("../Weapons_Manager/blasterK2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -321,7 +321,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("blasterK2:rotation")
+tracks/2/path = NodePath("../Weapons_Manager/blasterK2:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -333,7 +333,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("bullet_point:position")
+tracks/3/path = NodePath("../Weapons_Manager/bullet_point:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -448,21 +448,18 @@ script = ExtResource("2_xl7x2")
 _weapon_resorses = Array[ExtResource("3_r2w14")]([ExtResource("5_e3wdt"), ExtResource("4_wa8sq")])
 start_weapons = Array[String](["BlasterK2"])
 
-[node name="FPS_Rig" type="Node3D" parent="Camera3D"]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D/FPS_Rig"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D/Weapons_Manager"]
 libraries = {
 "": SubResource("AnimationLibrary_criqh")
 }
 
-[node name="blasterK2" parent="Camera3D/FPS_Rig" instance=ExtResource("2_yyyo3")]
+[node name="blasterK2" parent="Camera3D/Weapons_Manager" instance=ExtResource("8_cim0l")]
 transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0.5, -0.281, -0.935)
 
-[node name="blasterA2" parent="Camera3D/FPS_Rig" instance=ExtResource("2_8lg48")]
-transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0.5, -0.281, -0.935)
-visible = false
+[node name="blasterA2" parent="Camera3D/Weapons_Manager" instance=ExtResource("9_qb25v")]
+transform = Transform3D(-1, -6.42715e-12, 2.53518e-06, 0, -1, -2.53518e-06, 2.53518e-06, -2.53518e-06, 1, 0.5, -1.60052, -0.935)
 
-[node name="bullet_point" type="Marker3D" parent="Camera3D/FPS_Rig"]
+[node name="bullet_point" type="Marker3D" parent="Camera3D/Weapons_Manager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.496909, -0.18628, -1.21919)
 
 [node name="StateMachine" type="Node" parent="."]
@@ -495,5 +492,5 @@ shape = SubResource("BoxShape3D_2mgpi")
 [connection signal="update_ammo" from="Camera3D/Weapons_Manager" to="HUD" method="_on_weapons_manager_update_ammo"]
 [connection signal="update_weapon_stack" from="Camera3D/Weapons_Manager" to="HUD" method="_on_weapons_manager_update_weapon_stack"]
 [connection signal="weapon_changed" from="Camera3D/Weapons_Manager" to="HUD" method="_on_weapons_manager_weapon_changed"]
-[connection signal="animation_finished" from="Camera3D/FPS_Rig/AnimationPlayer" to="Camera3D/Weapons_Manager" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="Camera3D/Weapons_Manager/AnimationPlayer" to="Camera3D/Weapons_Manager" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="PickupArea" to="Camera3D/Weapons_Manager" method="_on_pickup_area_body_entered"]

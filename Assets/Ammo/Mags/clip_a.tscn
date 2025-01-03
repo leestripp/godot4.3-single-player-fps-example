@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://5gj8b8yk45bu"]
+
+[ext_resource type="PackedScene" uid="uid://cc7p2hwki6r32" path="res://Assets/Ammo/Mags/clipA.glb" id="1_ec4gw"]
+
+[node name="Clip_A" type="Node3D"]
+
+[node name="clipA2" parent="." instance=ExtResource("1_ec4gw")]
