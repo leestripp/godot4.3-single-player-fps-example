@@ -4,7 +4,7 @@ extends RigidBody3D
 var type := "Weapon"
 
 @export_enum("BlasterA2", "BlasterK2") var weap_name := "BlasterK2"
-@onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
+@onready var mesh_instance_3d: MeshInstance3D = $Node3D/MeshInstance3D
 var pickup_ready := false
 
 const BLASTER_K = preload("res://Assets/Weapons/blasterK.mesh")

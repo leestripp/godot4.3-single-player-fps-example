@@ -45,7 +45,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.5, -1.60052, -0.935), Vector3(0.5, -0.281, -0.935)]
+"values": [Vector3(0.5, -1.60052, -0.935), Vector3(0.5, -0.43, -0.935)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -97,7 +97,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.5, -0.281, -0.935), Vector3(0.5, -1.0982, -0.935)]
+"values": [Vector3(0.5, -0.43, -0.935), Vector3(0.5, -1.0982, -0.935)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -141,7 +141,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.5, -0.281, -0.935), Vector3(0.5, -0.281, -0.584553), Vector3(0.5, -0.281, -0.935)]
+"values": [Vector3(0.5, -0.43, -0.935), Vector3(0.5, -0.43, -0.585), Vector3(0.5, -0.43, -0.935)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -181,7 +181,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.5, -1.60052, -0.935), Vector3(0.5, -0.281, -0.935)]
+"values": [Vector3(0.5, -1.60052, -0.935), Vector3(0.5, -0.43, -0.935)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -233,7 +233,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.5, -0.281, -0.935), Vector3(0.5, -1.0982, -0.935)]
+"values": [Vector3(0.5, -0.43, -0.935), Vector3(0.5, -1.0982, -0.935)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -277,7 +277,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0666667, 0.166667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.5, -0.281, -0.935), Vector3(0.5, -0.281, -0.584553), Vector3(0.5, -0.281, -0.935)]
+"values": [Vector3(0.5, -0.43, -0.935), Vector3(0.5, -0.43, -0.585), Vector3(0.5, -0.43, -0.935)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -459,7 +459,7 @@ libraries = {
 transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0.5, -0.281, -0.935)
 
 [node name="blasterA2" parent="Camera3D/FPS_Rig" instance=ExtResource("2_8lg48")]
-transform = Transform3D(-1, 1.50989e-07, 2.53518e-06, -1.50996e-07, -1, -2.53518e-06, 2.53518e-06, -2.53518e-06, 1, 0.5, -1.60052, -0.935)
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0.5, -0.281, -0.935)
 visible = false
 
 [node name="bullet_point" type="Marker3D" parent="Camera3D/FPS_Rig"]

@@ -1,8 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwici5hk6kchb"]
+[gd_scene load_steps=6 format=3 uid="uid://bwici5hk6kchb"]
 
 [ext_resource type="Script" path="res://Assets/Pickups/weapon_pickup.gd" id="1_t4u5m"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yad84"]
+
+[sub_resource type="Animation" id="Animation_jnuxo"]
+resource_name = "Ammo_pickup_anim"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_p2m7n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vx3qq"]
+_data = {
+"Ammo_pickup_anim": SubResource("Animation_jnuxo"),
+"RESET": SubResource("Animation_p2m7n")
+}
 
 [node name="weapon_pickup" type="RigidBody3D" groups=["PickupGroup"]]
 collision_layer = 32
@@ -11,4 +49,13 @@ script = ExtResource("1_t4u5m")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_yad84")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D"]
+libraries = {
+"": SubResource("AnimationLibrary_vx3qq")
+}
+autoplay = "Ammo_pickup_anim"

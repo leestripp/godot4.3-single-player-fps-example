@@ -70,9 +70,10 @@ func drop(_name: String):
 			getRef = max(getRef, -1, 0)
 			exit(weapon_stack[getRef])
 
+
 func fire() -> void:
 	if current_weapon.current_ammo > 0:
-		if !animation_player.is_playing():
+		if not animation_player.is_playing():
 			animation_player.play(current_weapon.shoot_anim)
 			current_weapon.current_ammo -= 1
 			emit_signal("update_ammo", [current_weapon.current_ammo, current_weapon.reserve_ammo])
@@ -91,13 +92,22 @@ func hitscan_collision(hitpoint):
 	var bullet_direction = (hitpoint - bullet_point.get_global_transform().origin).normalized()
 	var new_intersection = PhysicsRayQueryParameters3D.create(bullet_point.get_global_transform().origin, hitpoint + bullet_direction)
 	var bullet_collision = get_world_3d().direct_space_state.intersect_ray(new_intersection)
-	if bullet_collision:
-		# print("Hitscan collision at : ", bullet_collision)
-		var hit_indc = bullet_hole.instantiate()
-		var world = get_tree().get_root()
-		world.add_child(hit_indc)
-		hit_indc.global_translate(bullet_collision.position)
-		hitscan_damage(bullet_collision.collider, bullet_direction, bullet_collision.position)
+	if bullet_collision.is_empty():
+		return
+	spawn_bullet_hit_fx(bullet_collision.position, bullet_collision.normal)
+	hitscan_damage(bullet_collision.collider, bullet_direction, bullet_collision.position)
+
+
+func spawn_bullet_hit_fx(pos: Vector3, normal: Vector3) -> void:
+	var hit_indc = bullet_hole.instantiate()
+	var world = get_tree().get_root()
+	var spawn_tform := Transform3D.IDENTITY
+	if not normal.is_equal_approx(Vector3.UP) and not normal.is_equal_approx(Vector3.DOWN):
+		spawn_tform = spawn_tform.looking_at(normal)
+		spawn_tform = spawn_tform.rotated_local(Vector3.RIGHT, -PI/2)
+	spawn_tform.origin = pos
+	hit_indc.global_transform = spawn_tform
+	world.add_child(hit_indc)
 
 
 func launch_projectile(hitpoint):
@@ -120,7 +130,7 @@ func hitscan_damage(collider, direction, collider_position):
 	if collider.is_in_group("Targets") and collider.has_method("hit_sucessful"):
 		collider.hit_sucessful(HITSCAN, current_weapon.damage, direction, collider_position)
 
-# Calc the raycast end point based on weapon
+# Get ray hitpoint from camera
 func get_camera_collision() -> Vector3:
 	var camera = get_viewport().get_camera_3d()
 	var viewport = get_viewport().get_size()

@@ -4,9 +4,10 @@ extends RigidBody3D
 var type := "Ammo"
 
 @export_enum("ClipA") var ammo_name := "ClipA"
-@onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
+
 var pickup_ready := false
 
+@onready var mesh_instance_3d: MeshInstance3D = $Node3D/MeshInstance3D
 const CLIP_A = preload("res://Assets/Weapons/clipA.mesh")
 
 func _ready() -> void:
