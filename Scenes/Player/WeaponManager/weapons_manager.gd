@@ -185,20 +185,20 @@ func change_weapon(weapon_name: String) -> void:
 	enter()
 
 
-func _on_pickup_area_body_entered(body: Node3D) -> void:
-	if body.is_in_group("PickupGroup"):
-		if body.type == "Weapon" and body.pickup_ready:
-			print(body)
-			var weapon_in_stack = weapon_stack.find(body.weap_name)
+func _on_pickup_area_area_entered(area: Area3D) -> void:
+	if area.is_in_group("PickupGroup"):
+		if area.get_parent().type == "Weapon" and area.get_parent().pickup_ready:
+			# print(area)
+			var weapon_in_stack = weapon_stack.find(area.get_parent().weap_name)
 			if weapon_in_stack == -1:
 				var getRef = weapon_stack.find(current_weapon.weapon_name)
-				weapon_stack.insert(getRef, body.weap_name)
+				weapon_stack.insert(getRef, area.get_parent().weap_name)
 				emit_signal("update_weapon_stack", weapon_stack)
-				exit(body.weap_name)
-				body.queue_free()
-		elif body.type == "Ammo" and body.pickup_ready:
-			print(body)
+				exit(area.get_parent().weap_name)
+				area.get_parent().queue_free()
+		elif area.get_parent().type == "Ammo" and area.get_parent().pickup_ready:
+			# print(area)
 			if current_weapon.reserve_ammo + current_weapon.magazine < current_weapon.max_ammo:
 				current_weapon.reserve_ammo += current_weapon.magazine
 				emit_signal("update_ammo", [current_weapon.current_ammo, current_weapon.reserve_ammo])
-				body.queue_free()
+				area.get_parent().queue_free()

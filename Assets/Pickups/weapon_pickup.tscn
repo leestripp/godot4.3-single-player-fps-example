@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwici5hk6kchb"]
+[gd_scene load_steps=7 format=3 uid="uid://bwici5hk6kchb"]
 
 [ext_resource type="Script" path="res://Assets/Pickups/weapon_pickup.gd" id="1_t4u5m"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_yad84"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_s5pvl"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0u3js"]
+radius = 0.8
 
 [sub_resource type="Animation" id="Animation_jnuxo"]
 resource_name = "Ammo_pickup_anim"
@@ -42,14 +45,24 @@ _data = {
 "RESET": SubResource("Animation_p2m7n")
 }
 
-[node name="weapon_pickup" type="RigidBody3D" groups=["PickupGroup"]]
-collision_layer = 32
+[node name="weapon_pickup" type="RigidBody3D"]
+lock_rotation = true
 script = ExtResource("1_t4u5m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_yad84")
+shape = SubResource("SphereShape3D_s5pvl")
+
+[node name="Area3D" type="Area3D" parent="." groups=["PickupGroup"]]
+collision_layer = 32
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_0u3js")
 
 [node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D"]
 libraries = {

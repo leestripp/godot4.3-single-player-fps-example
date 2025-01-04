@@ -1,9 +1,8 @@
-extends CanvasLayer
+extends Control
 
-@onready var weapon_label: Label = $HBox/Debug/weapon_label
-@onready var ammo_label: Label = $HBox/Debug/ammo_label
-@onready var weaponstack_label: Label = $HBox/Debug/weaponstack_label
-
+@onready var weapon_label: Label = $VBoxContainer/DebugInfo/Debug/weapon_label
+@onready var ammo_label: Label = $VBoxContainer/DebugInfo/Debug/ammo_label
+@onready var weaponstack_label: Label = $VBoxContainer/DebugInfo/Debug/weaponstack_label
 
 func _on_weapons_manager_update_ammo(Ammo) -> void:
 	ammo_label.set_text(str(Ammo[0]) + "/" + str(Ammo[1]))

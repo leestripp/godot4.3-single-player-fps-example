@@ -20,7 +20,6 @@ func hit_sucessful(bullet_type, damage, _direction:= Vector3.ZERO, _position:= V
 			var hit_position = _position + global_transform.origin
 			if _direction != Vector3.ZERO:
 				apply_impulse((_direction * damage * hit_factor), hit_position)
-				# print("Target apply impulse : ", _direction * damage)
 	health -= damage
 	print("Target HIT, health : ", health)
 	if health <= 0:

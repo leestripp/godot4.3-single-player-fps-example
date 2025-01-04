@@ -4,6 +4,7 @@ extends RigidBody3D
 var type := "Weapon"
 
 @export_enum("BlasterA2", "BlasterK2") var weap_name := "BlasterK2"
+
 @onready var node_3d: Node3D = $Node3D
 var pickup_ready := false
 

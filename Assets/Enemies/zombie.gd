@@ -1,15 +1,16 @@
-class_name Enemy
 extends CharacterBody3D
+class_name Enemy
 
 @onready var animation_player: AnimationPlayer = $Zombie/AnimationPlayer
 @onready var enemy_projectile = preload("res://Assets/Enemies/enemy_projectile.tscn")
 
-var damage := 1
+const GRAVITY := -9.8*2
 var speed := 0.0
 var health := 5
 var projectile_velocity := 10
 
 var detectedPlayer: Player
+var damage := 10
 var vel : Vector3
 var roamDistance := 100
 var current_state := EnemyState.IDLE
@@ -39,37 +40,38 @@ func set_state(value: EnemyState) -> void:
 			speed = 2.0
 		EnemyState.ATTACK:
 			animation_player.play("Attack")
-			var direction = (detectedPlayer.bullet_point.global_position - $Zombie/Armature/bullet_point.global_position).normalized()
+			var direction = ((detectedPlayer.global_position + Vector3(0,1,0)) - $Zombie/Armature/bullet_point.global_position).normalized()
 			$Zombie/Armature.rotation.y = atan2(direction.x, direction.z)
-			# fire at end of anim
-			await animation_player.animation_finished
+			await get_tree().create_timer(1).timeout
 			var zProjectile = enemy_projectile.instantiate()
 			get_tree().get_root().add_child(zProjectile)
 			zProjectile.global_position = $Zombie/Armature/bullet_point.global_position
 			zProjectile.damage = damage
+			zProjectile.enemy = self
 			zProjectile.set_linear_velocity(direction * projectile_velocity)
-			$moveTimer.start()
-			$DetectPlayerArea/CollisionShape3D.set_deferred_thread_group("Disabled", true)
-			$DetectPlayerArea/CollisionShape3D.set_deferred_thread_group("Disabled", false)
 
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
-		velocity.y = -9.8
+		velocity.y += GRAVITY * delta
 		move_and_slide()
 		return
 	# move enemy
+	velocity.y = 0
 	match current_state:
 		EnemyState.IDLE:
 			calc_rotation(delta)
-			Calc_velocity()
+			calc_velocity()
 			$NavigationAgent3D.set_velocity(vel)
 		EnemyState.ROAM:
 			calc_rotation(delta)
-			Calc_velocity()
+			calc_velocity()
 			$NavigationAgent3D.set_velocity(vel)
 		EnemyState.ATTACK:
 			$NavigationAgent3D.set_velocity(Vector3.ZERO)
+			# fire at end of anim
+			if not animation_player.is_playing():
+				set_state(EnemyState.ATTACK)
 	move_and_slide()
 
 
@@ -81,7 +83,7 @@ func calc_rotation(delta: float) -> void:
 	)
 
 
-func Calc_velocity() -> void:
+func calc_velocity() -> void:
 	# calc next target
 	var target = $NavigationAgent3D.get_next_path_position()
 	var pos = get_global_transform().origin
@@ -110,7 +112,7 @@ func move_to(target_pos):
 
 func _on_detect_player_area_body_entered(body: Node3D) -> void:
 	if body is Player:
-		print("Player entered attack zone.")
+		# print("Player entered attack zone.")
 		$moveTimer.stop()
 		detectedPlayer = body
 		set_state(EnemyState.ATTACK)
@@ -121,7 +123,7 @@ func _on_detect_player_area_body_exited(body: Node3D) -> void:
 	if body is Player:
 		print("Player exited attack zone.")
 		set_state(EnemyState.IDLE)
-		_on_move_timer_timeout()
+		# _on_move_timer_timeout()
 
 
 func hit_sucessful(bullet_type, damage, _direction:= Vector3.ZERO, _position:= Vector3.ZERO):
